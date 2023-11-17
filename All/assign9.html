@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form-container label,
+        .form-container input,
+        .form-container select,
+        .form-container button {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .form-container button {
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var address = document.getElementById("address").value;
+            var city = document.getElementById("city").value;
+            var state = document.getElementById("state").value;
+            var gender = document.getElementById("gender").value;
+            var mobileNumber = document.getElementById("mobileNumber").value;
+            var email = document.getElementById("email").value;
+
+            var errors = {};
+
+            if (name.trim() === "") {
+                errors.name = "Name is required. ";
+            }
+            if (address.trim() === "") {
+                errors.address = "Address is required. ";
+            }
+            if (city.trim() === "") {
+                errors.city = "City is required. ";
+            }
+            if (state.trim() === "") {
+                errors.state = "State is required. ";
+            }
+            if (gender.trim() === "") {
+                errors.gender = "Gender is required. ";
+            }
+            if (mobileNumber.trim() === "") {
+                errors.mobileNumber = "Mobile number is required. ";
+            }
+            if (email.trim() === "") {
+                errors.email = "Email is required. ";
+            }
+
+            // Validation for correct names (only alphabets and spaces)
+            var nameRegex = /^[a-zA-Z\s]+$/;
+            if (!name.match(nameRegex)) {
+                errors.name = "Invalid name. ";
+            }
+
+            // Validation for correct mobile number (10 digits)
+            var mobileRegex = /^[0-9]{10}$/;
+            if (!mobileNumber.match(mobileRegex)) {
+                errors.mobileNumber = "Invalid mobile number. ";
+            }
+
+            // Validation for correct email address
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.match(emailRegex)) {
+                errors.email = "Invalid email address. ";
+            }
+
+            // Display error messages next to the respective input fields
+            document.getElementById("cityError").textContent = errors.city || "";
+            document.getElementById("stateError").textContent = errors.state || "";
+            document.getElementById("emptyError").textContent = errors.address || "";
+            document.getElementById("nameError").textContent = errors.name || "";
+            document.getElementById("mobileNumberError").textContent = errors.mobileNumber || "";
+            document.getElementById("emailError").textContent = errors.email || "";
+
+            // If there are no errors, show congratulations message
+            if (Object.keys(errors).length === 0) {
+                window.location.href = "success.html";
+            }
+        }
+    </script>
+
+    <div class="form-container">
+        <h1>Student Information Form</h1>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required><br>
+            <span class="error-message" id="nameError"></span>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" required><br>
+            <span class="error-message" id="emptyError"></span>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" required><br>
+            <span class="error-message" id="cityError"></span>
+
+            <label for="state">State:</label>
+            <input type="text" id="state" required><br>
+            <span class="error-message" id="stateError"></span>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br>
+
+            <label for="mobileNumber">Mobile Number:</label>
+            <input type="text" id="mobileNumber" required><br>
+            <span class="error-message" id="mobileNumberError"></span>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required><br>
+            <span class="error-message" id="emailError"></span>
+
+            <button type="button" onclick="validateForm()">Submit</button>
+        </form>
+    </div>
+    
+</body>
+
+</html>

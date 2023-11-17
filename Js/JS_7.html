@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array and Objects</title>
+</head>
+
+<body style="text-align: center">
+    <hr>
+    <h1>Array and Array objects</h1>
+    Enter array size: <input id="arraySize" name="arraySize">
+    <p><button onclick="initializeArray()">Initialize Array</button></p>
+    Enter object: <input id="obj" name="obj">
+    <p><button onclick="appendObject()">Append object</button></p>
+    <p><button onclick="printArray()">Print Array</button></p>
+    Enter index to check: <input id="indexToCheck" name="indexToCheck">
+    <p><button onclick="checkElementAtIndex()">Check for</button></p>
+    <p id="ans"></p>
+
+    <script>
+        var objectsArray = [];
+        var arraySize = 0;
+
+        function initializeArray() {
+            arraySize = parseInt(document.getElementById("arraySize").value);
+            objectsArray = []; // Initialize as an empty array
+            document.getElementById("ans").innerHTML = "Array initialized with size: " + arraySize;
+        }
+
+        function appendObject() {
+            var target = document.getElementById("obj").value;
+            if (arraySize === 0) {
+                document.getElementById("ans").innerHTML = "Initialize the array size first.";
+                return;
+            }
+            if (objectsArray.length >= arraySize) {
+                document.getElementById("ans").innerHTML = "Array is full. Cannot add more elements.";
+                return;
+            }
+            if (target.startsWith("[") && target.endsWith("]")) {
+                target = JSON.parse(target);
+            }
+            objectsArray.push(target);
+            document.getElementById("ans").innerHTML = "Object appended: " + target;
+        }
+
+        function printArray() {
+            document.getElementById("ans").innerHTML = "Array: " + JSON.stringify(objectsArray);
+        }
+
+        function checkElementAtIndex() {
+            var index = parseInt(document.getElementById("indexToCheck").value);
+            if (index >= 0 && index < objectsArray.length) {
+                var element = objectsArray[index];
+                if (Array.isArray(element)) {
+                    document.getElementById("ans").innerHTML = "Element at index " + index + " is an array.";
+                    // Perform additional actions for arrays here, if needed.
+                } else if (typeof element === 'object') {
+                    document.getElementById("ans").innerHTML = "Element at index " + index + " is an object.";
+                    // Perform additional actions for objects here, if needed.
+                } else if (typeof element === 'string') {
+                    document.getElementById("ans").innerHTML = "Element at index " + index + " is a string.";
+                    // Perform additional actions for strings here, if needed.
+                } else {
+                    document.getElementById("ans").innerHTML = "Element at index " + index + " is of an unknown type.";
+                    // Perform additional actions for other types here, if needed.
+                }
+            } else {
+                document.getElementById("ans").innerHTML = "Invalid index. Please enter a valid index within the array's bounds.";
+            }
+        }
+    </script>
+</body>
+</html>

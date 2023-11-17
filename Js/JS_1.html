@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body {text-align: center;}
+		</style>
+		<title>Area Calculator</title>
+	</head>
+    <body>
+	    <h1>Calculating Area of Different shapes</h1>
+	    <br>
+	    <h3>Rectangle Area Calculation</h3>
+	    length =  <input type="number" id="length">
+	    <br><br>
+	    breadth = <input type="number" id="breadth"><br><br>
+	    <button onclick="rectangle()">Calculate</button><br><br>
+	    <h4 id="area_rectangle"></h4><br>
+
+	   <h3>Circle Area Calculation</h3>
+	   radius = <input type="number" id="radius"><br><br>
+	   <button onclick="circle()">Calculate</button><br><br>
+	   <h4 id="area_circle"></h4><br>
+
+	   <h3>Triangle Area Calculation</h3>
+	   Side A = <input type="number" id="sidea"><br><br>
+	   Side B = <input type="number" id="sideb"><br><br>
+	   Side C = <input type="number" id="sidec"><br><br>
+	   <button onclick="triangle()">Calculate</button><br><br>
+	   <h4 id="area_triangle"></h4>
+
+	<script>
+		function rectangle() 
+		{
+			var len = parseInt(document.getElementById("length").value);
+			var bre = parseInt(document.getElementById("breadth").value);
+			if(len <= 0 || bre <= 0)
+			{
+				alert("Please enter a valid value (positive) for length and breadth");
+			}
+			else
+			{
+				document.getElementById("area_rectangle").innerHTML ="Area = " + (len * bre);
+			}
+			
+		}
+		function circle() 
+		{
+			var rad = parseInt(document.getElementById("radius").value);
+			if (rad<=0)
+			{
+				alert("Please enter a valid value (positive) for radius")
+			}
+			else
+			{
+                document.getElementById("area_circle").innerHTML = "Area = " + (Math.PI * rad * rad);
+			}
+		}
+		function triangle() {
+			var a = parseInt(document.getElementById("sidea").value);
+			var b = parseInt(document.getElementById("sideb").value);
+			var c = parseInt(document.getElementById("sidec").value);
+			
+			if(c>=a+b || a>=c+b || b>=a+c)
+			{
+				alert("Please enter correct values for triangle's sides");
+			}
+			else
+			{
+				const s = (a + b + c) / 2;
+			    document.getElementById("area_triangle").innerHTML = "Area = " + (Math.sqrt(s * (s - a) * (s - b) * (s - c)));
+			}
+		}
+	</script>
+    </body>
+</html>

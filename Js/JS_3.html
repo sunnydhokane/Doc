@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{text-align: center;}
+        </style>
+        <title>String Operations</title>
+    </head>
+<body>
+    <h1>String Operations</h1><br>
+    Enter a string = <input type="text" id="input"><br><br>
+    <button onclick="set_string()">Perform Operations</button><br><br>
+    <p id="string"></p>
+    <p id="reverse"></p>
+    <p id="palindrome"></p><br>
+
+    Index position to replace character at = <input type="number" id="change_index"><br><br>
+    Character to replace at above index position = <input type="text" id="change_char"><br><br>
+    <button onclick="replace()">Replace Char</button><br><br>
+
+    <p id="updated_string"></p>
+    <script>
+        function set_string() 
+        {
+            var st = document.getElementById("input").value;
+            document.getElementById("string").innerHTML = "Given string = " + st;
+            rev(st);
+        }
+
+        function rev(s) 
+        {
+            const arrayStrings = s.split("");
+            const reverseArray = arrayStrings.reverse();
+            const joinArray = reverseArray.join("");
+            document.getElementById("reverse").innerHTML = "Reversed string = " + joinArray;
+            palin(s, joinArray);
+        }
+
+        function palin(s, re) 
+        {
+            if (s == re) {
+                document.getElementById("palindrome").innerHTML = "Is the given a string a palindrome =  Yes";
+            }
+            else {
+                document.getElementById("palindrome").innerHTML = "Is the given a string a palindrome =  No";
+            }
+        }
+
+        function replace() {
+            var s = document.getElementById("input").value;
+            var i = parseInt(document.getElementById("change_index").value);
+            if (i<s.length && i>=0)
+            {
+                var c = document.getElementById("change_char").value;
+                var r = s.substring(0, i) + c + s.substring(i + 1);
+                document.getElementById("updated_string").innerHTML = "Updated string = " + r;
+            }
+
+            else
+            {
+                alert("Please enter a valid index position");
+            }
+        }
+    </script>
+</body>
+</html>

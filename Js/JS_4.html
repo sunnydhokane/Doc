@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+    <title>String Comparison Methods</title>
+</head>
+
+<body>
+    <h2>String Comparison Methods</h2>
+    <p>Enter the strings</p>
+    <input type="text" id="a">
+    <input type="text" id="b"><br><br>
+    <button onclick="compare()">Go</button>
+    <h4>1. Using Strict Equality Operator </h4>
+    <span id="z"></span>
+    <h4>2. Based on length </h4>
+    <span id="y"></span>
+    <h4>3. Based on alphabetic order</h4>
+    <span id="x"></span>
+    <h4>4. Using user defined function</h4>
+    <button onclick="Compare()">Go</button><br><br>
+    <span id="s"></span><br>
+
+    <script>
+
+        function compare() 
+        {
+            let a = document.getElementById('a').value;
+            let b = document.getElementById('b').value;
+            document.getElementById('z').innerText = a === b ? "Equal" : "Unequal";
+            document.getElementById('y').innerText = (a.length == b.length) ? "Equal" : "Unequal";
+            let c = a.localeCompare(b);
+            document.getElementById('x').innerText = c;
+        }
+
+        function Compare()
+        {
+            let a = document.getElementById('a').value;
+            let b = document.getElementById('b').value;
+            let i,j = 0;
+            if(a.length == b.length)
+            {
+                for(i=0;i<a.length;i++)
+                {
+                    if (a[i] == b[i])
+                    {
+                        j = 0;
+                    }
+
+                    else
+                    {
+                        j = 1;
+                        document.getElementById('s').innerText = " Strings are unequal";
+                        break;
+                    }
+
+                }
+                if(j == 0)
+                {
+                    document.getElementById('s').innerText = "Strings are equal";
+                }
+            }
+
+            else
+            {
+                document.getElementById('s').innerText = "Strings are unequal";
+            }
+        }
+    </script>
+</body>
+</html>
